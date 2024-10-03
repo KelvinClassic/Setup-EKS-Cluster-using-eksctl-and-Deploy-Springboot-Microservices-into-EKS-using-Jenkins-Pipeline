@@ -1,5 +1,5 @@
 pipeline {
-    
+
     agent any
 
     tools{
@@ -24,8 +24,10 @@ pipeline {
         }
 
         stage('Build image'){
-            script{
-                docker.build registry
+            steps{
+                script{
+                    docker.build registry
+                }
             }
         }
     }
