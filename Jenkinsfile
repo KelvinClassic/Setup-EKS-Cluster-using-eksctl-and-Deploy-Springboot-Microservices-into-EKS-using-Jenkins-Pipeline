@@ -4,6 +4,10 @@ pipeline {
         maven "Maven3"
     }
 
+    environment{
+        registry = '404578764941.dkr.ecr.us-west-2.amazonaws.com/my-docker-repo'
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -14,6 +18,10 @@ pipeline {
             steps{
                 sh 'mvn clean install'
             }
+        }
+        stage('Build'){
+
+
         }
     }
 }
