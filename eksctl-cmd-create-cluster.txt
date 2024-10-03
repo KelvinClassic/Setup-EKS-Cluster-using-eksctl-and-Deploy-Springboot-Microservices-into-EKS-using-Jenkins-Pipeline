@@ -1,0 +1,24 @@
+#Switch to jenkins users before creating the cluster
+eksctl create cluster --name demo-eks --region us-east-1 --nodegroup-name my-nodes --node-type t3.small --managed --nodes 2
+
+#Install docker and add current user to docker group
+sudo usermod -aG docker $USER
+
+#Add jenkins user to the docker group
+sudo usermod -a -G docker jenkins
+
+#Restart jenkins
+sudo service jenkins restart
+
+sudo systemctl daemon-reload
+
+#Restart docker
+sudo service docker start
+
+
+#Install Docker, docker Pipeline, and Kubernetes CLI plugins on jenkins UI
+
+#REgister maven within tools section in jenkins
+
+
+#Create credentials for connecting to kubernetes cluster using kubeconfig and apply in jenkins from jenkins UI
