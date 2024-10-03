@@ -1,3 +1,6 @@
+#Give jenkins user super priviledge 
+sudo su - jenkins
+
 #Switch to jenkins users before creating the cluster
 eksctl create cluster --name demo-eks --region us-east-1 --nodegroup-name my-nodes --node-type t3.small --managed --nodes 2
 
@@ -7,12 +10,20 @@ sudo usermod -aG docker $USER
 #Add jenkins user to the docker group
 sudo usermod -a -G docker jenkins
 
+
+#Set docker service to run at startup
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo systemctl enable docker
+
+
 #Restart jenkins
 sudo service jenkins restart
 
 sudo systemctl daemon-reload
 
 #Restart docker
+sudo service docker stop
 sudo service docker start
 
 
