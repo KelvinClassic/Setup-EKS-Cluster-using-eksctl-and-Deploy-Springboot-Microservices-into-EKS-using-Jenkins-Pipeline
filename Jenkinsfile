@@ -37,6 +37,7 @@ pipeline {
                 sh 'docker push 404578764941.dkr.ecr.us-west-2.amazonaws.com/my-docker-repo:latest'
             }
         }
+        
         stage('K8S Deploy'){
             steps{
                 withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
